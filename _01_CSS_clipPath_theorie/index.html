@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <title>01 - CSS clip-path - Théorie</title>
+        <!-- Ajustement de la taille du viewport-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Styles CSS-->
+        <style>
+            html {
+                width: 100vw;
+                height: 100vh;
+                max-width: 100%;
+                font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+                /* Ajustement de la taille des polices à la racine du document */
+                font-size: clamp(14px, 0.5rem + 0.5vw, 24px);
+            }
+
+            main {
+                max-width: 100%;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+
+            section {
+                /*S'étire comme item flex*/
+                flex-grow: 1;
+                /*Conteneur flex*/
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+
+            div {
+                width: 70vmin;
+                height: calc(70vmin * 2 / 3);
+                background: #fff url(image/CSS.png) 0 0 no-repeat;
+                background-position: center;
+                background-size: cover;
+                cursor: pointer;
+            }
+
+            /* Ajustement pour les écrans de taille moyenne et plus grande
+			=============================================================== */
+            @media screen and (min-width: 768px) {
+                section {
+                    /*Conteneur flex en rangée*/
+                    flex-direction: row;
+                }
+
+                div {
+                    width: 30vw;
+                }
+            }
+
+            /*clip-path
+* La propriété CSS clip-path permet de cacher des portions d’un élément via un découpage 
+* C'est souvent l'équivalent d'un masque dans un logiciel de dessin comme Photoshop et Illusrator
+* Voir les sites de référence fournis...
+* 
+*/
+
+            /*cercle - : circle*/
+            .cercle {
+                clip-path: circle(25% at 50% 50%);
+            }
+
+            /*ellipse - : ellipse*/
+            .ovale {
+                clip-path: ellipse(25% 50% at 50% 50%);
+            }
+
+            /*polygone personnalisé - : polygone*/
+            .polygone {
+                clip-path: polygon(50% 0%, 50% 0%, 100% 100%, 0% 100%);
+            }
+
+            /*Effet de transition*/
+            div {
+                transition: clip-path 400ms;
+            }
+
+            /*////////////////////// EFFET DE TRANSITION///////////////////*/
+            /*cercle - : circle*/
+            .cercle:hover,
+            .cercle:active {
+                clip-path: circle(40% at 50% 50%);
+            }
+
+            /*ellipse - : ellipse*/
+            .ovale:hover,
+            .ovale:active {
+                clip-path: ellipse(50% 50% at 50% 50%);
+            }
+
+            /*triangle personnalisé - : polygone*/
+            .polygone:hover,
+            .polygone:active {
+                clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>Découpage d'éléments avec clip-path - Formes de base & transition</h1>
+            <section>
+                <div class="cercle"></div>
+                <div class="ovale"></div>
+                <div class="polygone"></div>
+            </section>
+        </main>
+    </body>
+</html>
